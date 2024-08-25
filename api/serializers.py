@@ -62,7 +62,7 @@ class ListNewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        exclude = ("body",)
+        fields = "__all__"
 
 
 class NewsSerializer(serializers.ModelSerializer):

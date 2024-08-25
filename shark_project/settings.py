@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "ckeditor_uploader",
-    "corsheaders",
+    
     "ckeditor",
     'rest_framework',
     'rest_framework.authtoken',
