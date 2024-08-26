@@ -6,6 +6,14 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework.authtoken.models import Token
 from shark_app.models import *
 
+
+class NewsSerializer(serializers.ModelSerializer):
+    images = serializers.ListSerializer(child=Base64ImageField(), required=False)   
+    class Meta:
+        model = News
+        exclude = ('user',)
+
+
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Images
@@ -32,7 +40,8 @@ class TagsSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    # commentator = DetailUserSerializer()
+    news = NewsSerializer()
+    commentator = DetailUserSerializer()
 
     class Meta:
         model = Comment
@@ -45,7 +54,7 @@ class DetailNewsSerializer(serializers.ModelSerializer):
     user = DetailUserSerializer()
     tags = TagsSerializer()
     category = CategorySerializer()
-    # comments = CommentSerializer()
+    comments = CommentSerializer()
 
     class Meta:
         model = News
@@ -65,11 +74,6 @@ class ListNewsSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class NewsSerializer(serializers.ModelSerializer):
-    images = serializers.ListSerializer(child=Base64ImageField(), required=False)   
-    class Meta:
-        model = News
-        exclude = ('user',)
 
     def update(self, instance, validated_data):
         images = validated_data.pop('images', [])

@@ -51,3 +51,10 @@ class UserViewSet(ModelViewSet):
     lookup_field = "id"
     serializer_class = DetailUserSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
+
+
+class CommentViewSet(ModelViewSet):
+    queryset = Comment.objects.all()
+    lookup_field = "id"
+    serializer_class = CommentSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)

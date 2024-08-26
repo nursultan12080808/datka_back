@@ -37,7 +37,7 @@ class Comment(TimeStampAbstractModel):
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
 
-    new = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
+    news = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
     commentator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     decription = models.TextField(verbose_name="Текст пользователя", default="НИЧЕГО")
 
@@ -68,6 +68,7 @@ class Images(models.Model):
     new = models.ForeignKey("shark_app.News", on_delete=models.CASCADE, related_name="images")
     def __str__(self):
         return f"{self.new.name}"
+
 
 
 class Tags(models.Model):
