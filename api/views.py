@@ -38,6 +38,14 @@ class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
 
 
+
+class TagViewSet(ModelViewSet):
+    queryset = Tags.objects.all()
+    lookup_field = "id"
+    serializer_class = TagsSerializer
+
+
+
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     lookup_field = "id"
