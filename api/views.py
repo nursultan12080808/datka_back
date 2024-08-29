@@ -9,7 +9,6 @@ from .filters import *
 from .paginations import *
 from .permissions import *
 from .serializers import *
-import telegram_send
 from shark_app.models import *
 from django.contrib.auth.views import get_user_model
 
