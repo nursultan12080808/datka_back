@@ -48,6 +48,29 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class DockSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Dock
+        fields = "__all__"
+
+
+class DocumentSerializer(serializers.ModelSerializer):
+
+    dock_files = DockSerializer(many=True)
+
+    class Meta:
+        model = Document
+        fields = "__all__"
+
+
+class ChapterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Chapter
+        fields = "__all__"
+
+
 class DetailNewsSerializer(serializers.ModelSerializer):
 
     images = ImageSerializer(many = True)

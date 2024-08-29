@@ -1,6 +1,8 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 from django.contrib.auth.views import get_user_model
-
+from django.db.models import FileField
+from phonenumber_field.modelfields import PhoneNumberField
 User = get_user_model()
 
 class TimeStampAbstractModel(models.Model):
@@ -22,6 +24,7 @@ class News(TimeStampAbstractModel):
     category = models.ForeignKey("shark_app.Category",verbose_name="Выберите категорию", on_delete=models.PROTECT, related_name="news")
     tags = models.ManyToManyField("shark_app.Tags",verbose_name="Выберите теги" ,related_name="news")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    viedo_link = models.URLField(verbose_name="Ссылка для видео", blank=True, null=True)
     location = models.CharField("Название места", max_length=200)
     rating = models.PositiveIntegerField(verbose_name="Рейтинг", blank=True, null=True, default=0.0, editable=True)
     views = models.IntegerField(verbose_name="Просмотры", editable=False, default=0)
@@ -82,4 +85,57 @@ class Tags(models.Model):
         return f"{self.name}"
 
 
+class Document(TimeStampAbstractModel):
+
+    class Meta:
+        verbose_name = "Документ"
+        verbose_name_plural = "Документы"
+
+    name = models.CharField(verbose_name="Название документа", max_length=100)
+    user = models.ForeignKey(User, verbose_name="Автор", related_name="document", on_delete=models.PROTECT)
+
+
+class Dock(models.Model):
+
+    class Meta:
+        verbose_name = "Файл"
+        verbose_name_plural = "Файлы"
+
+    document = models.ForeignKey(Document, related_name="dock_files", on_delete=models.CASCADE)
+    file = models.FileField()
+
+
+
+class Chapter(TimeStampAbstractModel):
+
+    class Meta:
+        verbose_name = "Глава"
+        verbose_name_plural = "Главы"
+
+    firt_name = models.CharField(max_length=50, verbose_name = "Фамилия")
+    last_name = models.CharField(max_length=50, verbose_name = "Имя")
+    surname = models.CharField(verbose_name="Отчество", max_length=50)
+    bio = models.TextField(verbose_name="Био")
+    image = models.ImageField(verbose_name="Фото главы")
+
+    @property
+    def get_full_name(self):
+        return f'{self.firt_name} {self.last_name} {self.surname}'
+
+    def __str__(self) -> str:
+        return self.get_full_name
+    
+
+    
+class Contact(TimeStampAbstractModel):
+
+    class Meta:
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
+
+    name = models.CharField(verbose_name="Контакт", max_length=50)
+    phone = PhoneNumberField(max_length=100, unique=True, verbose_name='номер телефона')
+
+    def __str__(self) -> str:
+        return f"{self.name} {self.phone}"
 # Create your models here.

@@ -22,6 +22,21 @@ class NewsImageStackedInline(admin.TabularInline):
     model = Images
     extra = 1
 
+class DocumentFileStackedInline(admin.TabularInline):
+
+    model = Dock
+    extra = 1
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "user")
+    list_display_links = ("id", "name")
+    readonly_fields = ('created_at', 'updated_at')
+    search_fields = ('name',)
+    list_filter = ('created_at', 'updated_at')
+    inlines = [DocumentFileStackedInline,]
+
+
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
@@ -51,6 +66,7 @@ class NewsAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(Tags)
+admin.site.register(Chapter)
 
 
 # Register your models here.
