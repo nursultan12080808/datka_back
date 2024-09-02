@@ -26,6 +26,7 @@ class News(TimeStampAbstractModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     viedo_link = models.URLField(verbose_name="Ссылка для видео", blank=True, null=True)
     location = models.CharField("Название места", max_length=200)
+    likes = models.IntegerField(verbose_name="Лайки",default=0)
     rating = models.PositiveIntegerField(verbose_name="Рейтинг", blank=True, null=True, default=0.0, editable=True)
     views = models.IntegerField(verbose_name="Просмотры", editable=False, default=0)
 
