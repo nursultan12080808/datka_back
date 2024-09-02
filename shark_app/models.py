@@ -41,7 +41,7 @@ class Comment(TimeStampAbstractModel):
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
 
-    news = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
+    new = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
     commentator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     decription = models.TextField(verbose_name="Текст пользователя", default="НИЧЕГО")
 

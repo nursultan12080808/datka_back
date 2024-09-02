@@ -40,7 +40,7 @@ class TagsSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    news = NewsSerializer()
+    new = NewsSerializer()
     commentator = DetailUserSerializer()
 
     class Meta:
