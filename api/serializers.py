@@ -7,6 +7,15 @@ from rest_framework.authtoken.models import Token
 from shark_app.models import *
 
 
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ('is_staff', 'is_active', 'password', 'is_superuser', 'groups', 'user_permissions')
+
+
+
 class NewsSerializer(serializers.ModelSerializer):
     images = serializers.ListSerializer(child=Base64ImageField(), required=False)   
     class Meta:
@@ -131,3 +140,46 @@ class CreateNewsSerializer(serializers.ModelSerializer):
 
         return new
     
+class RegisterSerializer(serializers.ModelSerializer):
+    avatar = Base64ImageField()  # Используем Base64ImageField вместо ListSerializer
+    password1 = serializers.CharField(validators=[validate_password])
+    password2 = serializers.CharField()
+
+    class Meta:
+        model = User
+        exclude = ('is_staff', 'is_active', 'password', 'is_superuser', 'groups', 'user_permissions',)
+
+    def validate(self, attrs):
+        password1 = attrs.get('password1')
+        password2 = attrs.get('password2')
+        
+        if password1 != password2:
+            raise serializers.ValidationError({
+                'password2': ['Пароли не совпадают!']
+            })
+
+        return attrs
+
+    def create(self, validated_data):
+        password = validated_data.pop('password1')
+        validated_data.pop('password2')
+        validated_data['password'] = make_password(password)
+
+        return super().create(validated_data)
+    
+    
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+class DetailTokenSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    class Meta:
+        model = Token
+        fields = '__all__'
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Token
+        fields = '__all__'

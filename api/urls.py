@@ -13,6 +13,10 @@ router.register('chapters', ChapterViewSet)
 
 urlpatterns = [
     # path('send_telegram/', TelegramSend),
+    path('auth/login/', LoginApiView.as_view()),
+    path('auth/register/', RegisterApiView.as_view()),
+
+    path('redactor_profile/<int:id>/', RedactorProfileApiView.as_view()),
 
     path('', include(router.urls)),
 ]
