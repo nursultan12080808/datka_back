@@ -28,7 +28,7 @@ class News(TimeStampAbstractModel):
     location = models.CharField("Название места", max_length=200)
     likes = models.IntegerField(verbose_name="Лайки",default=0)
     rating = models.PositiveIntegerField(verbose_name="Рейтинг", blank=True, null=True, default=0.0, editable=True)
-    views = models.IntegerField(verbose_name="Просмотры", editable=False, default=0)
+    views = models.IntegerField(verbose_name="Просмотры", default=0)
 
     def __str__(self):
         return f"{self.name}"
