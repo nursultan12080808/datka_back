@@ -77,7 +77,6 @@ class DetailNewsSerializer(serializers.ModelSerializer):
     user = DetailUserSerializer()
     tags = TagsSerializer()
     category = CategorySerializer()
-    comments = CommentSerializer()
 
     class Meta:
         model = News
