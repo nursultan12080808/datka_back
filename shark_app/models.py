@@ -103,7 +103,19 @@ class Dock(models.Model):
         verbose_name_plural = "Файлы"
 
     document = models.ForeignKey(Document, related_name="dock_files", on_delete=models.CASCADE)
+    name_file = models.CharField(verbose_name="Название ссылки", max_length=100, default=" ")
     file = models.FileField()
+
+
+
+class Archive(TimeStampAbstractModel):
+
+    class Meta:
+        verbose_name = "Архив"
+        verbose_name_plural = "Архивы"
+    
+    date = models.CharField(verbose_name="Месяц год - Месяц год", max_length=100)
+    description = models.TextField(verbose_name="Архив")
 
 
 

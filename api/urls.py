@@ -10,6 +10,7 @@ router.register('tags', TagViewSet)
 router.register('comments', CommentViewSet)
 router.register('documents', DocumentViewSet)
 router.register('chapters', ChapterViewSet)
+router.register('archives', ArchiveViewSet)
 
 urlpatterns = [
     # path('send_telegram/', TelegramSend),

@@ -16,6 +16,13 @@ class NewsAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class ArchiveAdminForm(forms.ModelForm):
+
+    description = forms.CharField(widget=CKEditorUploadingWidget(), label="Описание архива")
+
+    class Meta:
+        model = Archive
+        fields = "__all__"
 
 class NewsImageStackedInline(admin.TabularInline):
 
@@ -26,6 +33,18 @@ class DocumentFileStackedInline(admin.TabularInline):
 
     model = Dock
     extra = 1
+
+
+@admin.register(Archive)
+class ArchiveAdmin(admin.ModelAdmin):
+    list_display = ("id", "date")
+    list_display_links = ("id", "date")
+    readonly_fields = ('created_at', 'updated_at')
+    search_fields = ('date',"description")
+    list_filter = ('created_at', 'updated_at')
+    form = ArchiveAdminForm
+
+
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
@@ -67,6 +86,5 @@ admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(Tags)
 admin.site.register(Chapter)
-
 
 # Register your models here.

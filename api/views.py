@@ -91,6 +91,12 @@ class ChapterViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 
+class ArchiveViewSet(ModelViewSet):
+    queryset = Archive.objects.all()
+    lookup_field = "id"
+    serializer_class = ArchiveSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
+
 
 
 class RegisterApiView(GenericAPIView):

@@ -140,6 +140,16 @@ class CreateNewsSerializer(serializers.ModelSerializer):
 
         return new
     
+
+
+class ArchiveSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Archive
+        fields = "__all__"
+
+
+    
 class RegisterSerializer(serializers.ModelSerializer):
     avatar = Base64ImageField()  # Используем Base64ImageField вместо ListSerializer
     password1 = serializers.CharField(validators=[validate_password])
