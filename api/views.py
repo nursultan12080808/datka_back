@@ -73,7 +73,12 @@ class UserViewSet(ModelViewSet):
 class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
     lookup_field = "id"
-    serializer_class = CommentSerializer
+    serializer_class = {
+        'list': DetailCommentSerializer,
+        'retrieve': DetailCommentSerializer,
+        'create': CommentSerializer,
+        'update': CommentSerializer,
+    }
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 

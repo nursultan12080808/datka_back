@@ -47,7 +47,16 @@ class TagsSerializer(serializers.ModelSerializer):
         model = Tags
         fields = "__all__"
 
+
+
 class CommentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = "__all__"
+
+
+class DetailCommentSerializer(serializers.ModelSerializer):
 
     new = NewsSerializer()
     commentator = DetailUserSerializer()
@@ -150,8 +159,7 @@ class ArchiveSerializer(serializers.ModelSerializer):
 
 
     
-class RegisterSerializer(serializers.ModelSerializer):
-    avatar = Base64ImageField()  # Используем Base64ImageField вместо ListSerializer
+class RegisterSerializer(serializers.ModelSerializer): 
     password1 = serializers.CharField(validators=[validate_password])
     password2 = serializers.CharField()
 
