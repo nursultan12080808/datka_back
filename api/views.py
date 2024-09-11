@@ -80,7 +80,11 @@ class CommentViewSet(ModelViewSet):
         'update': CommentSerializer,
     }
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
-
+    def get_serializer_class(self):
+        if self.action == 'partial_update':
+            return self.serializer_class['update']
+        return self.serializer_class[self.action] 
+    
 
 class DocumentViewSet(ModelViewSet):
     queryset = Document.objects.all()
