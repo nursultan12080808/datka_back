@@ -31,9 +31,6 @@ class UserAdmin(BaseUserAdmin):
             'get_avatar',
             'first_name',
             'last_name',
-            'bio', 
-            'labor_activity',
-            'education'
         )}),
         (_('Permissions'), {'fields': (
             'role',

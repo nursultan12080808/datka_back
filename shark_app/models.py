@@ -151,4 +151,23 @@ class Contact(TimeStampAbstractModel):
 
     def __str__(self) -> str:
         return f"{self.name} {self.phone}"
+    
+
+class Postanovlenie(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Название постановления")  # Название постановления
+    content = models.TextField(verbose_name="Содержимое постановления")               # Содержимое постановления
+    date_issued = models.DateField(verbose_name="Дата издания")           # Дата издания
+    number = models.CharField(max_length=50, verbose_name="Номер постановления")   # Номер постановления
+    issued_by = models.CharField(max_length=100, verbose_name="Кем издано")  # Кем издано
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания записи")  # Дата создания записи
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего обновления")      # Дата последнего обновления
+
+    class Meta:
+        verbose_name = 'Постановление'
+        verbose_name_plural = 'Постановления'
+        ordering = ['-date_issued']  # Сортировка по дате издания (новые первыми)
+
+    def __str__(self):
+        return self.title
+
 # Create your models here.

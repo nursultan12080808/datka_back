@@ -83,6 +83,7 @@ class NewsAdmin(admin.ModelAdmin):
     
     
 admin.site.register(Category)
+admin.site.register(Postanovlenie)
 admin.site.register(Comment)
 admin.site.register(Tags)
 admin.site.register(Chapter)

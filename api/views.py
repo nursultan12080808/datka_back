@@ -107,6 +107,13 @@ class ArchiveViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 
+class PostanovlenieViewSet(ModelViewSet):
+    queryset = Postanovlenie.objects.all()
+    lookup_field = "id"
+    serializer_class = PostanovlenieSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
+
+
 
 class RegisterApiView(GenericAPIView):
 

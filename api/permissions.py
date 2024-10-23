@@ -9,7 +9,7 @@ class IsSalesmanOrReadOnly(BasePermission):
 
         return bool(
             request.method in SAFE_METHODS or
-            request.user.role == User.SALESMAN or
+            request.user.role == User.ADMIN or
             request.user.is_superuser
         )
 
@@ -27,7 +27,7 @@ class IsAdminUserOrReadOnly(BasePermission):
 class IsSalesman(BasePermission):
 
     def has_permission(self, request, view):
-        return request.user.role == User.SALESMAN or request.user.is_superuser
+        return request.user.role == User.ADMIN or request.user.is_superuser
     
 
 class IsOwnerProductOrReadOnly(BasePermission):

@@ -6,19 +6,12 @@ from account.managers import UserManager
 
 class User(AbstractUser):
 
-    ADMIN = "chapter"
-    SALESMAN = "deputy_head"
+    ADMIN = "admin"
+    CLIENT = "client"
 
     ROLE = (
-        (ADMIN, 'Глава'),
-        (SALESMAN, 'Заместитель главы - отвественный секретарь'),
-        ("head_of_department", 'Начальник отдела социально-экономического развития'),
-        ("chief_specialist", "Главный специалист"),
-        ("leading_specialist", "Ведущий специалист"),
-        ("specialist", "Специалист"),
-        ("starasta", "Стараста"),
-        ("technical_support_staff", "МОБ топ"),
-        ("сontract_worker", "Работник по контракту"),
+        (ADMIN, 'Админ'),
+        (CLIENT, 'Клиент'),
     )
 
     class Meta:
@@ -31,9 +24,6 @@ class User(AbstractUser):
     phone = PhoneNumberField(max_length=100, unique=True, verbose_name='номер телефона')
     email = models.EmailField(blank=True,verbose_name='электронная почта', unique=True)
     role = models.CharField('должность', choices=ROLE, max_length=50)
-    bio = models.TextField(verbose_name='Биография')
-    labor_activity = models.TextField(verbose_name="Трудовая деятельность")
-    education = models.TextField(verbose_name="Образование")
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

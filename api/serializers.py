@@ -158,6 +158,12 @@ class ArchiveSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class PostanovlenieSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Postanovlenie
+        fields = "__all__"
+
     
 class RegisterSerializer(serializers.ModelSerializer): 
     password1 = serializers.CharField(validators=[validate_password])
@@ -189,6 +195,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
+
 
 class DetailTokenSerializer(serializers.ModelSerializer):
     user = UserSerializer()
