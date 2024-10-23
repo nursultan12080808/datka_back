@@ -33,9 +33,11 @@ class IsSalesman(BasePermission):
 class IsOwnerProductOrReadOnly(BasePermission):
 
     def has_object_permission(self, request, view, obj):
-            return bool(
+        return bool(
             request.method in SAFE_METHODS or
             request.user == obj.user or
+            request.user == obj.user or
+            request.user.role == User.ADMIN or
             request.user.is_superuser
         )
 
