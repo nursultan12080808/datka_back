@@ -169,5 +169,24 @@ class Postanovlenie(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class AiylKeneshi(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Название айыльного кенеша')
+    location = models.CharField(max_length=100, verbose_name='Населенный пункт')
+    members_count = models.PositiveIntegerField(verbose_name='Количество членов кенеша')
+    date_established = models.DateField(verbose_name='Дата основания')
+    responsibilities = models.TextField(verbose_name='Полномочия и обязанности')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата последнего обновления')
+
+    class Meta:
+        verbose_name = 'Айыльный кенеш'
+        verbose_name_plural = 'Айыльные кенеши'
+        ordering = ['name']  # Сортировка по имени
+
+    def __str__(self):
+        return self.name
 
 # Create your models here.

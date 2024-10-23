@@ -164,6 +164,13 @@ class PostanovlenieSerializer(serializers.ModelSerializer):
         model = Postanovlenie
         fields = "__all__"
 
+
+class AiylKeneshiSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AiylKeneshi
+        fields = '__all__'
+
     
 class RegisterSerializer(serializers.ModelSerializer): 
     password1 = serializers.CharField(validators=[validate_password])

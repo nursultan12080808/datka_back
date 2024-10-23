@@ -114,6 +114,13 @@ class PostanovlenieViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 
+class AiylKeneshiViewSet(ModelViewSet):
+    queryset = AiylKeneshi.objects.all()
+    lookup_field = "id"
+    serializer_class = AiylKeneshiSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
+
+
 
 class RegisterApiView(GenericAPIView):
 
