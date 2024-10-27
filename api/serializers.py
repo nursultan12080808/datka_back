@@ -49,23 +49,6 @@ class TagsSerializer(serializers.ModelSerializer):
 
 
 
-class CommentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Comment
-        fields = "__all__"
-
-
-class DetailCommentSerializer(serializers.ModelSerializer):
-
-    new = NewsSerializer()
-    commentator = DetailUserSerializer()
-
-    class Meta:
-        model = Comment
-        fields = "__all__"
-
-
 class DockSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -95,7 +78,6 @@ class DetailNewsSerializer(serializers.ModelSerializer):
     user = DetailUserSerializer()
     tags = TagsSerializer()
     category = CategorySerializer()
-    comments = CommentSerializer(many=True)
 
     class Meta:
         model = News
@@ -108,7 +90,6 @@ class ListNewsSerializer(serializers.ModelSerializer):
     user = DetailUserSerializer()
     tags = TagsSerializer()
     category = CategorySerializer()
-    # comments = CommentSerializer()
 
     class Meta:
         model = News
@@ -164,12 +145,6 @@ class PostanovlenieSerializer(serializers.ModelSerializer):
         model = Postanovlenie
         fields = "__all__"
 
-
-class AiylKeneshiSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = AiylKeneshi
-        fields = '__all__'
 
     
 class RegisterSerializer(serializers.ModelSerializer): 

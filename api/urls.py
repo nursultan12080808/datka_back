@@ -7,12 +7,10 @@ router.register('news', NewsViewSet)
 router.register('categories', CategoryViewSet)
 router.register('users', UserViewSet)
 router.register('tags', TagViewSet)
-router.register('comments', CommentViewSet)
 router.register('documents', DocumentViewSet)
 router.register('chapters', ChapterViewSet)
 router.register('archives', ArchiveViewSet)
 router.register('postanovlenies', PostanovlenieViewSet)
-router.register('aiylkeneshies', AiylKeneshiViewSet)
 
 
 urlpatterns = [

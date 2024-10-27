@@ -70,22 +70,6 @@ class UserViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 
-class CommentViewSet(ModelViewSet):
-    queryset = Comment.objects.all()
-    lookup_field = "id"
-    serializer_class = {
-        'list': DetailCommentSerializer,
-        'retrieve': DetailCommentSerializer,
-        'create': CommentSerializer,
-        'update': CommentSerializer,
-    }
-    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
-    def get_serializer_class(self):
-        if self.action == 'partial_update':
-            return self.serializer_class['update']
-        return self.serializer_class[self.action] 
-    
-
 class DocumentViewSet(ModelViewSet):
     queryset = Document.objects.all()
     lookup_field = "id"
@@ -111,13 +95,6 @@ class PostanovlenieViewSet(ModelViewSet):
     queryset = Postanovlenie.objects.all()
     lookup_field = "id"
     serializer_class = PostanovlenieSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
-
-
-class AiylKeneshiViewSet(ModelViewSet):
-    queryset = AiylKeneshi.objects.all()
-    lookup_field = "id"
-    serializer_class = AiylKeneshiSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 

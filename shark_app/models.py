@@ -35,20 +35,6 @@ class News(TimeStampAbstractModel):
 
 
 
-class Comment(TimeStampAbstractModel):
-
-    class Meta:
-        verbose_name = "Комментарий"
-        verbose_name_plural = "Комментарии"
-
-    new = models.ForeignKey(News, related_name='comments', on_delete=models.CASCADE)
-    commentator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
-    decription = models.TextField(verbose_name="Текст пользователя", default="НИЧЕГО")
-
-    def __str__(self):
-        return f"Comment by {self.commentator.username} on {self.new.name}"
-
-
 
 class Category(models.Model):
 
@@ -171,23 +157,25 @@ class Postanovlenie(models.Model):
         return self.title
     
 
-
-class AiylKeneshi(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название айыльного кенеша')
-    location = models.CharField(max_length=100, verbose_name='Населенный пункт')
-    members_count = models.PositiveIntegerField(verbose_name='Количество членов кенеша')
-    date_established = models.DateField(verbose_name='Дата основания')
-    responsibilities = models.TextField(verbose_name='Полномочия и обязанности')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата последнего обновления')
+class JobTitle(models.Model):
 
     class Meta:
-        verbose_name = 'Айыльный кенеш'
-        verbose_name_plural = 'Айыльные кенеши'
-        ordering = ['name']  # Сортировка по имени
+        verbose_name = "Должность"
+        verbose_name_plural = "Должности"
 
-    def __str__(self):
-        return self.name
+    name = models.CharField("Название должности", max_length=50)
+
+
+
+class Administration(models.Model):
+
+    class Meta:
+        verbose_name = "Администрация"
+        verbose_name_plural = "Администрации"
+
+    name = models.CharField(verbose_name="Ф.И.О", max_length=100)
+    job = models.ForeignKey(JobTitle,verbose_name="Должность", related_name="people", on_delete=models.CASCADE)
+
 
 
 

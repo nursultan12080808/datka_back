@@ -81,9 +81,9 @@ class NewsAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="{item.images.first().image.url}" width="100%">')
         return '-'
     
-    
+admin.site.register(Administration)
+admin.site.register(JobTitle)
 admin.site.register(Category)
-admin.site.register(AiylKeneshi)
 admin.site.register(Postanovlenie)
 admin.site.register(Tags)
 admin.site.register(Chapter)
