@@ -164,7 +164,9 @@ class JobTitle(models.Model):
         verbose_name_plural = "Должности"
 
     name = models.CharField("Название должности", max_length=50)
-
+    
+    def __str__(self) -> str:
+        return self.name
 
 
 class Administration(models.Model):
@@ -176,6 +178,8 @@ class Administration(models.Model):
     name = models.CharField(verbose_name="Ф.И.О", max_length=100)
     job = models.ForeignKey(JobTitle,verbose_name="Должность", related_name="people", on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.name    
 
 
 
