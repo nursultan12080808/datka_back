@@ -98,6 +98,14 @@ class PostanovlenieViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
 
 
+class AdministrationViewSet(ModelViewSet):
+    queryset = Administration.objects.all()
+    lookup_field = "id"
+    serializer_class = AdministrationSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsSalesmanOrReadOnly, IsOwnerProductOrReadOnly)
+
+
+
 
 class RegisterApiView(GenericAPIView):
 

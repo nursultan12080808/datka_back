@@ -146,6 +146,25 @@ class PostanovlenieSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+
+class JobTitleSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = JobTitle
+        fields = "__all__"
+
+
+
+class AdministrationSerializer(serializers.ModelSerializer):
+    
+    job = JobTitleSerializer()
+
+    class Meta:
+        model = Administration
+        fields = "__all__"
+
+
+
     
 class RegisterSerializer(serializers.ModelSerializer): 
     password1 = serializers.CharField(validators=[validate_password])

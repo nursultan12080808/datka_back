@@ -11,7 +11,7 @@ router.register('documents', DocumentViewSet)
 router.register('chapters', ChapterViewSet)
 router.register('archives', ArchiveViewSet)
 router.register('postanovlenies', PostanovlenieViewSet)
-
+router.register("administartions", AdministrationViewSet)
 
 urlpatterns = [
     path('auth/login/', LoginApiView.as_view()),
