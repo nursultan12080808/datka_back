@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  main:
+    build:
+      context: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app:delegated
+    ports:
+      - 8008:8000
+    networks:
+      - app
+    restart: always
+
+networks:
+  app:
