@@ -54,7 +54,7 @@ class Images(models.Model):
         verbose_name = ""
         verbose_name_plural = ""
 
-    image = models.ImageField(verbose_name="Изображение", upload_to="news_images/")
+    image = models.ImageField(verbose_name="Изображение", upload_to="")
     new = models.ForeignKey("shark_app.News", on_delete=models.CASCADE, related_name="images")
     def __str__(self):
         return f"{self.new.name}"

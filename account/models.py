@@ -20,7 +20,7 @@ class User(AbstractUser):
         ordering = ('-date_joined',)
 
     username = None
-    avatar = models.ImageField(upload_to='avatars/', verbose_name='аватарка', null=True, blank=True)
+    avatar = models.ImageField(upload_to='', verbose_name='аватарка', null=True, blank=True)
     phone = PhoneNumberField(max_length=100, unique=True, verbose_name='номер телефона')
     email = models.EmailField(blank=True,verbose_name='электронная почта', unique=True)
     role = models.CharField('должность', choices=ROLE, max_length=50)
